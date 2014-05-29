@@ -1,0 +1,268 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "squiggle-light";
+  src:url("fonts/squiggle-light.eot");
+  src:url("fonts/squiggle-light.eot?#iefix") format("embedded-opentype"),
+    url("fonts/squiggle-light.woff") format("woff"),
+    url("fonts/squiggle-light.ttf") format("truetype"),
+    url("fonts/squiggle-light.svg#squiggle-light") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "squiggle-light" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "squiggle-light" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-1:before {
+  content: "a";
+}
+.icon-1-copy-7-copy:before {
+  content: "b";
+}
+.icon-2-copy-4:before {
+  content: "c";
+}
+.icon-2-copy-copy-3:before {
+  content: "d";
+}
+.icon-3-copy-7:before {
+  content: "e";
+}
+.icon-3-copy-7-copy:before {
+  content: "f";
+}
+.icon-3:before {
+  content: "g";
+}
+.icon-2-copy-4-copy:before {
+  content: "h";
+}
+.icon-1-copy-8-copy:before {
+  content: "i";
+}
+.icon-1-copy:before {
+  content: "j";
+}
+.icon-1-copy-2:before {
+  content: "k";
+}
+.icon-1-copy-9-copy:before {
+  content: "l";
+}
+.icon-2-copy-5:before {
+  content: "m";
+}
+.icon-3-copy:before {
+  content: "n";
+}
+.icon-3-copy-8-copy:before {
+  content: "o";
+}
+.icon-3-copy-9-copy:before {
+  content: "p";
+}
+.icon-3-copy-2:before {
+  content: "q";
+}
+.icon-2-copy-5-copy:before {
+  content: "r";
+}
+.icon-1-copy-10-copy:before {
+  content: "s";
+}
+.icon-1-copy-2-copy:before {
+  content: "t";
+}
+.icon-1-copy-3:before {
+  content: "u";
+}
+.icon-1-copy-copy:before {
+  content: "v";
+}
+.icon-2-copy-6:before {
+  content: "w";
+}
+.icon-3-copy-2-copy:before {
+  content: "x";
+}
+.icon-3-copy-10-copy:before {
+  content: "y";
+}
+.icon-3-copy-copy:before {
+  content: "z";
+}
+.icon-3-copy-3:before {
+  content: "A";
+}
+.icon-2-copy-6-copy:before {
+  content: "B";
+}
+.icon-1-copy-copy-2:before {
+  content: "C";
+}
+.icon-1-copy-3-copy:before {
+  content: "D";
+}
+.icon-1-copy-4:before {
+  content: "E";
+}
+.icon-1-copy-copy-3:before {
+  content: "F";
+}
+.icon-2-copy-7:before {
+  content: "G";
+}
+.icon-3-copy-3-copy:before {
+  content: "H";
+}
+.icon-3-copy-copy-2:before {
+  content: "I";
+}
+.icon-3-copy-copy-3:before {
+  content: "J";
+}
+.icon-3-copy-4:before {
+  content: "K";
+}
+.icon-2-copy-7-copy:before {
+  content: "L";
+}
+.icon-2:before {
+  content: "M";
+}
+.icon-1-copy-4-copy:before {
+  content: "N";
+}
+.icon-1-copy-5:before {
+  content: "O";
+}
+.icon-2-copy:before {
+  content: "P";
+}
+.icon-2-copy-8-copy:before {
+  content: "Q";
+}
+.icon-3-copy-4-copy:before {
+  content: "R";
+}
+.icon-3-copy-5:before {
+  content: "S";
+}
+.icon-2-copy-9-copy:before {
+  content: "T";
+}
+.icon-2-copy-2:before {
+  content: "U";
+}
+.icon-1-copy-6:before {
+  content: "V";
+}
+.icon-2-copy-2-copy:before {
+  content: "W";
+}
+.icon-1-copy-5-copy:before {
+  content: "X";
+}
+.icon-2-copy-10-copy:before {
+  content: "Y";
+}
+.icon-3-copy-5-copy:before {
+  content: "Z";
+}
+.icon-3-copy-6:before {
+  content: "0";
+}
+.icon-2-copy-copy:before {
+  content: "1";
+}
+.icon-2-copy-3:before {
+  content: "2";
+}
+.icon-1-copy-6-copy:before {
+  content: "3";
+}
+.icon-1-copy-7:before {
+  content: "4";
+}
+.icon-2-copy-3-copy:before {
+  content: "5";
+}
+.icon-2-copy-copy-2:before {
+  content: "6";
+}
+.icon-3-copy-6-copy:before {
+  content: "7";
+}
+.icon-1-copy-2-1:before {
+  content: "8";
+}
+.icon-1-copy-9-copy-1:before {
+  content: "9";
+}
+.icon-1-copy-copy-1:before {
+  content: "!";
+}
+.icon-2-copy-copy-3-1:before {
+  content: "\"";
+}
+.icon-2-copy-2-copy-1:before {
+  content: "#";
+}
+.icon-2-copy-3-1:before {
+  content: "$";
+}
+.icon-1-copy-6-1:before {
+  content: "%";
+}
+.icon-1-copy-5-copy-1:before {
+  content: "&";
+}
+.icon-1-copy-5-1:before {
+  content: "'";
+}
+.icon-1-copy-4-copy-1:before {
+  content: "(";
+}
+.icon-1-copy-4-1:before {
+  content: ")";
+}
+.icon-2-copy-4-copy-1:before {
+  content: "*";
+}
+.icon-1-copy-7-1:before {
+  content: "+";
+}
+.icon-2-copy-copy-1:before {
+  content: ",";
+}
+.icon-2-copy-5-copy-1:before {
+  content: "-";
+}
+.icon-1-copy-6-copy-1:before {
+  content: ".";
+}
