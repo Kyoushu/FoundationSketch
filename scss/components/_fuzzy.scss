@@ -1,0 +1,25 @@
+$fuzzy-inset: rem-calc(20);
+
+.fuzzy--border{
+    
+    background-repeat: no-repeat !important;
+    
+    &.columns, &.column{
+        background-position: ($column-gutter / 2) 0;
+    }
+    
+    > *{
+        
+        &:nth-child(1){
+            margin-top: $fuzzy-inset;
+        }
+        
+        &:last-child{
+            margin-bottom: $fuzzy-inset;
+        }
+        
+        margin-left: $fuzzy-inset;
+        margin-right: $fuzzy-inset;
+    }
+    
+}
