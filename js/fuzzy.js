@@ -5,7 +5,9 @@
     
     var fuzzy = (function(){
         
-        var defaultFuzzStrength = 4;
+        var defaultFuzzStrength = 5;
+        var defaultColour = '#222222';
+        
         var inset = 3;
         
         function fuzz(x, strength){
@@ -26,11 +28,12 @@
 
         // inspired by this paper
         // http://iwi.eldoc.ub.rug.nl/FILES/root/2008/ProcCAGVIMeraj/2008ProcCAGVIMeraj.pdf
-        function handDrawLine(ctx, x0, y0, x1, y1, fuzzStrength){
+        function handDrawLine(ctx, x0, y0, x1, y1, fuzzStrength, colour){
             
             if(typeof fuzzStrength === 'undefined') fuzzStrength = defaultFuzzStrength;
+            if(typeof colour === 'undefined') colour = defaultColour;
             
-            ctx.strokeStyle = '#000000 ';
+            ctx.strokeStyle = colour;
             ctx.lineWidth = 2;
             ctx.moveTo(x0, y0);
 
@@ -58,9 +61,26 @@
             
         }
         
-        function createBoxCanvas(width, height, fuzzStrength){
+        function createFillBoxCanvas(width, height, fuzzStrength, colour){
             
             if(typeof fuzzStrength === 'undefined') fuzzStrength = defaultFuzzStrength;
+            if(typeof colour === 'undefined') colour = defaultColour;
+            
+            var canvas = createBorderBoxCanvas(width, height, fuzzStrength, colour);
+            
+            var ctx = canvas.getContext('2d');
+            
+            ctx.rect(inset, inset, width - (inset * 2), height - (inset * 2));
+            ctx.fillStyle = colour;
+            ctx.fill();
+            
+            return canvas;
+        }
+        
+        function createBorderBoxCanvas(width, height, fuzzStrength, colour){
+            
+            if(typeof fuzzStrength === 'undefined') fuzzStrength = defaultFuzzStrength;
+            if(typeof colour === 'undefined') colour = defaultColour;
             
             var canvas = document.createElement('canvas');
             canvas.width = width;
@@ -68,10 +88,10 @@
             
             var ctx = canvas.getContext('2d');
             
-            handDrawLine(ctx, inset, inset, width - inset, inset, fuzzStrength);  // TL > TR
-            handDrawLine(ctx, width - inset, inset, width - inset, height - inset, fuzzStrength); // TR > BR
-            handDrawLine(ctx, width, height -inset, inset, height - inset, fuzzStrength); // BR > BL
-            handDrawLine(ctx, inset, height - inset, inset, inset, fuzzStrength); // BL > TL
+            handDrawLine(ctx, inset, inset, width - inset, inset, fuzzStrength, colour);  // TL > TR
+            handDrawLine(ctx, width - inset, inset, width - inset, height - inset, fuzzStrength, colour); // TR > BR
+            handDrawLine(ctx, width, height -inset, inset, height - inset, fuzzStrength, colour); // BR > BL
+            handDrawLine(ctx, inset, height - inset, inset, inset, fuzzStrength, colour); // BL > TL
             
             ctx.stroke();
             
@@ -80,7 +100,9 @@
         }
         
         return {
-            'createBoxCanvas': createBoxCanvas
+            'defaultColour': defaultColour,
+            'createBorderBoxCanvas': createBorderBoxCanvas,
+            'createFillBoxCanvas': createFillBoxCanvas
         };
         
     })();
