@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: "squiggle-regular";
-  src:url("fonts/squiggle-regular.eot");
-  src:url("fonts/squiggle-regular.eot?#iefix") format("embedded-opentype"),
-    url("fonts/squiggle-regular.woff") format("woff"),
-    url("fonts/squiggle-regular.ttf") format("truetype"),
-    url("fonts/squiggle-regular.svg#squiggle-regular") format("svg");
+  src:url("#{$fonts-path}/squiggle-regular/fonts/squiggle-regular.eot");
+  src: url("#{$fonts-path}/squiggle-regular/fonts/squiggle-regular.svg#squiggle-regular") format("svg"),
+    url("#{$fonts-path}/squiggle-regular/fonts/squiggle-regular.eot?#iefix") format("embedded-opentype"),
+    url("#{$fonts-path}/squiggle-regular/fonts/squiggle-regular.woff") format("woff"),
+    url("#{$fonts-path}/squiggle-regular/fonts/squiggle-regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 
@@ -227,11 +227,8 @@
 .icon-3-copy-6-copy:before {
   content: "!";
 }
-.icon-3-copy-2:before {
-  content: "\"";
-}
 .icon-2-copy-5-copy-copy:before {
-  content: "#";
+    content: "#";
 }
 .icon-2:before {
   content: "$";

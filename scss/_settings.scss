@@ -43,7 +43,7 @@
 // We use these to control various global styles
 // $body-bg: #fff;
 // $body-font-color: #222;
-$body-font-family: 'Coming Soon', cursive;
+$body-font-family: 'marker', cursive;
 // $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
 
@@ -120,7 +120,7 @@ $column-gutter: rem-calc(20);
 // $include-html-type-classes: $include-html-classes;
 
 // We use these to control header font styles
-// $header-font-family: $body-font-family;
+ $header-font-family: 'squiggle-regular', cursive;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
 // $header-font-color: #222;
@@ -1262,7 +1262,7 @@ $column-gutter: rem-calc(20);
 
 // These variabels define the slider bar styles
 // $range-slider-bar-width: 100%;
-// $range-slider-bar-height: rem-calc(16);
+// $range-slider-bar-height: rem-calc(16);squiggle-regular
 
 // $range-slider-bar-border-width: 1px;
 // $range-slider-bar-border-style: solid;

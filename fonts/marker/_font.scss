@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: "marker";
-  src:url("fonts/marker.eot");
-  src:url("fonts/marker.eot?#iefix") format("embedded-opentype"),
-    url("fonts/marker.woff") format("woff"),
-    url("fonts/marker.ttf") format("truetype"),
-    url("fonts/marker.svg#marker") format("svg");
+  src:url("#{$fonts-path}/marker/fonts/marker.eot");
+  src: url("#{$fonts-path}/marker/fonts/marker.svg#marker") format("svg"),
+    url("#{$fonts-path}/marker/fonts/marker.eot?#iefix") format("embedded-opentype"),
+    url("#{$fonts-path}/marker/fonts/marker.woff") format("woff"),
+    url("#{$fonts-path}/marker/fonts/marker.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 
@@ -226,9 +226,6 @@
 }
 .icon-3-copy-8-copy:before {
   content: "!";
-}
-.icon-3-copy-2:before {
-  content: "\"";
 }
 .icon-2-copy-7-copy:before {
   content: "#";
