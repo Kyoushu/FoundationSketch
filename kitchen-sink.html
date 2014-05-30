@@ -1,0 +1,606 @@
+<html class="no-js" lang="en">
+<!doctype html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Foundation</title>
+    <link rel="stylesheet" href="css/app.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Coming+Soon' rel='stylesheet' type='text/css'>
+    <script src="bower_components/modernizr/modernizr.js"></script>
+</head>
+<body>
+<div class="row">
+	<div class="large-12 column">
+		<h1 id="kitchen-sink">Kitchen Sink</h1>
+		<h3 class="subheader">This page includes elements so that we can make sure things work together smoothly.</h3>
+		<!-- Alerts -->
+		<h4 id="alert-boxes">Alert Boxes</h4>
+		<div data-alert="" class="alert-box radius">
+			 This is a standard alert (div.alert-box). <a href="" class="close">×</a>
+		</div>
+		<div data-alert="" class="alert-box success">
+			 This is a success alert (div.alert-box.success). <a href="" class="close">×</a>
+		</div>
+		<div data-alert="" class="alert-box alert round">
+			 This is an alert (div.alert-box.alert.round). <a href="" class="close">×</a>
+		</div>
+		<div data-alert="" class="alert-box secondary">
+			 This is a secondary alert (div.alert-box.secondary). <a href="" class="close">×</a>
+		</div>
+		<!-- Orbit -->
+		<ul class="example-orbit" data-orbit>
+			<li>
+			<img src="http://placehold.it/1000x350" alt="slide 1"/>
+			<div class="orbit-caption">
+				 Caption One.
+			</div>
+			</li>
+			<li class="active">
+			<img src="http://placehold.it/1000x350" alt="slide 2"/>
+			<div class="orbit-caption">
+				 Caption Two.
+			</div>
+			</li>
+			<li>
+			<img src="http://placehold.it/1000x350" alt="slide 3"/>
+			<div class="orbit-caption">
+				 Caption Three.
+			</div>
+			</li>
+		</ul>
+		<!-- Breadcrumbs -->
+		<hr>
+		<h4 id="breadcrumbs">Breadcrumbs</h4>
+		<ul class="breadcrumbs">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Features</a></li>
+			<li class="unavailable"><a href="#">Gene Splicing</a></li>
+			<li class="current"><a href="#">Cloning</a></li>
+		</ul>
+		<!-- Buttons -->
+		<hr>
+		<h4 id="buttons">Buttons</h4>
+		<div class="row">
+			<div class="small-6 large-6 columns">
+				<a href="#" class="tiny button">.tiny.button</a><br>
+				<a href="#" class="small button">.small.button</a><br>
+				<a href="#" class="button">.button</a><br>
+				<a href="#" class="button expand">.expand</a><br>
+			</div>
+			<div class="small-6 large-6 columns">
+				<a href="#" class="tiny button secondary">.tiny.secondary</a><br>
+				<a href="#" class="small button success radius">.small.success.radius</a><br>
+				<a href="#" class="button alert round disabled">.round.disabled</a><br>
+			</div>
+		</div>
+		<!-- Button Groups -->
+		<hr>
+		<h4 id="button-groups">Button Groups</h4>
+		<ul class="button-group">
+			<li><a href="#" class="small button">Button 1</a></li>
+			<li><a href="#" class="small button">Button 2</a></li>
+			<li><a href="#" class="small button">Button 3</a></li>
+		</ul>
+		<ul class="button-group radius">
+			<li><a href="#" class="button secondary">Button 1</a></li>
+			<li><a href="#" class="button secondary">Button 2</a></li>
+			<li><a href="#" class="button secondary">Button 3</a></li>
+			<li><a href="#" class="button secondary">Button 4</a></li>
+		</ul>
+		<ul class="button-group round even-3">
+			<li><a href="#" class="button alert">Button 1</a></li>
+			<li><a href="#" class="button alert">Button 2</a></li>
+			<li><a href="#" class="button alert">Button 3</a></li>
+		</ul>
+		<ul class="button-group round even-3">
+			<li><input type="submit" class="button success" value="Button 1"></li>
+			<li><input type="submit" class="button success" value="Button 2"></li>
+			<li><input type="submit" class="button success" value="Button 3"></li>
+		</ul>
+		<!-- Dropdown Buttons -->
+		<hr>
+		<h4 id="dropdown-buttons">Dropdown Buttons</h4>
+		<ul id="drop" class="f-dropdown content" data-dropdown-content="">
+			<li><a href="#">This is a link</a></li>
+			<li><a href="#">This is another</a></li>
+			<li><a href="#">Yet another</a></li>
+		</ul>
+		<p>
+			<a href="#" data-dropdown="drop" class="tiny button dropdown">Dropdown Button</a><br>
+			<a href="#" data-dropdown="drop" class="small secondary radius button dropdown">Dropdown Button</a><br>
+			<a href="#" data-dropdown="drop" class="button alert round dropdown">Dropdown Button</a><br>
+			<a href="#" data-dropdown="drop" class="large success button dropdown">Dropdown Button</a><br>
+			<a href="#" data-dropdown="drop" class="large button dropdown expand">Dropdown Button</a>
+		</p>
+		<hr>
+		<!-- Split Buttons -->
+		<h4 id="split-buttons">Split Buttons</h4>
+		<p>
+			<a href="#" class="tiny button split">Split Button <span data-dropdown="drop"></span></a><br>
+			<a href="#" class="small secondary radius button split">Split Button <span data-dropdown="drop"></span></a><br>
+			<a href="#" class="button alert round split">Split Button <span data-dropdown="drop"></span></a><br>
+			<a href="#" class="large success button split">Split Button <span data-dropdown="drop"></span></a>
+		</p>
+		<!-- Forms -->
+		<hr>
+		<h4 id="forms">Forms</h4>
+		<form>
+			<div class="row">
+				<div class="large-12 columns">
+					<label>Input Label</label>
+					<input type="text" placeholder="large-12.columns">
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-4 columns">
+					<label>Input Label</label>
+					<input type="text" placeholder="large-4.columns">
+				</div>
+				<div class="large-4 columns">
+					<label>Input Label</label>
+					<input type="text" placeholder="large-4.columns">
+				</div>
+				<div class="large-4 columns">
+					<div class="row collapse">
+						<label>Input Label</label>
+						<div class="small-9 columns">
+							<input type="text" placeholder="small-9.columns">
+						</div>
+						<div class="small-3 columns">
+							<span class="postfix">.com</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					<label>Textarea Label</label>
+					<textarea placeholder="small-12.columns"></textarea>
+				</div>
+			</div>
+		</form>
+		<hr>
+		<!-- Dropdowns -->
+		<h4 id="dropdowns">Dropdowns</h4>
+		<p>
+			<a class="button" data-dropdown="tinyDrop" href="#">Link Dropdown »</a>
+			<a class="button" data-dropdown="contentDrop" href="#">Content Dropdown »</a>
+			<!-- Dropdowns -->
+		</p>
+		<ul class="f-dropdown" data-dropdown-content="" id="tinyDrop">
+			<li><a href="#">This is a link</a></li>
+			<li><a href="#">This is another</a></li>
+			<li><a href="#">Yet another</a></li>
+		</ul>
+		<div class="f-dropdown content medium" data-dropdown-content="" id="contentDrop">
+			<h4>Title</h4>
+			<p>
+				Some text that people will think is awesome! Some text that people will think is awesome! Some text that people will think is awesome!
+			</p>
+			<img src="http://placehold.it/350x150">
+			<p>
+				Launching a Discovery Mission
+			</p>
+			<a class="button" href="#">Button</a>
+		</div>
+		<hr>
+		<!-- Inline List -->
+		<h4 id="inline-lists">Inline Lists</h4>
+		<ul class="inline-list">
+			<li><a href="#">Link 1</a></li>
+			<li><a href="#">Link 2</a></li>
+			<li><a href="#">Link 3</a></li>
+			<li><a href="#">Link 4</a></li>
+			<li><a href="#">Link 5</a></li>
+		</ul>
+		<hr>
+		<!-- Keystroke -->
+		<h4 id="keystroke">Keystroke</h4>
+		<p>
+			To make something pretty, press and hold <kbd>Highlight this line here</kbd>
+		</p>
+		<hr>
+		<h4 id="labels">Labels</h4>
+		<p>
+			<span class="label">Regular Label</span><br>
+			<span class="radius secondary label">Radius Secondary Label</span><br>
+			<span class="round alert label">Round Alert Label</span><br>
+			<span class="success label">Success Label</span><br>
+		</p>
+		<hr>
+		<!-- Paginaton -->
+		<h4 id="pagination">Pagination</h4>
+		<ul class="pagination">
+			<li class="arrow unavailable"><a href="">«</a></li>
+			<li class="current"><a href="">1</a></li>
+			<li><a href="">2</a></li>
+			<li><a href="">3</a></li>
+			<li><a href="">4</a></li>
+			<li class="unavailable"><a href="">…</a></li>
+			<li><a href="">12</a></li>
+			<li><a href="">13</a></li>
+			<li class="arrow"><a href="">»</a></li>
+		</ul>
+		<hr>
+		<!-- Panels -->
+		<h4 id="panels">Panels</h4>
+		<div class="row">
+			<div class="large-6 columns">
+				<div class="panel">
+					<h5>This is a regular panel.</h5>
+					<p>
+						It has an easy to override visual style, and is appropriately subdued.
+					</p>
+				</div>
+			</div>
+			<div class="large-6 columns">
+				<div class="panel callout radius">
+					<h5>This is a callout panel with radiused edges.</h5>
+					<p>
+						It's a little ostentatious, but useful for important content.
+					</p>
+				</div>
+			</div>
+			<p>
+			</p>
+		</div>
+		<p>
+		</p>
+		<hr>
+		<!-- Reveal -->
+		<h4 id="reveal">Reveal</h4>
+		<p>
+			<a href="#" data-reveal-id="firstModal" class="radius button">Example Modal…</a>
+			<a href="#" data-reveal-id="videoModal" class="radius button">Example Modal w/Video…</a>
+		</p>
+		<!-- Reveal Modals begin -->
+		<div id="firstModal" class="reveal-modal" data-reveal="">
+			<h2>This is a modal.</h2>
+			<p>
+				Reveal makes these very easy to summon and dismiss. The close button is simply an anchor with a unicode character icon and a class of <code>close-reveal-modal</code>. Clicking anywhere outside the modal will also dismiss it.
+			</p>
+			<p>
+				Finally, if your modal summons another Reveal modal, the plugin will handle that for you gracefully.
+			</p>
+			<p>
+				<a href="#" data-reveal-id="secondModal" class="secondary button">Second Modal...</a>
+			</p>
+			<a class="close-reveal-modal">×</a>
+		</div>
+		<div id="secondModal" class="reveal-modal" data-reveal="">
+			<h2>This is a second modal.</h2>
+			<p>
+				See? It just slides into place after the other first modal. Very handy when you need subsequent dialogs, or when a modal option impacts or requires another decision.
+			</p>
+			<a class="close-reveal-modal">×</a>
+		</div>
+		<div id="videoModal" class="reveal-modal large" data-reveal="">
+			<h2>This modal has video</h2>
+			<div class="flex-video">
+				<iframe width="420" height="315" src="//www.youtube.com/embed/aiBt44rrslw" frameborder="0" allowfullscreen="">
+				</iframe>
+			</div>
+			<a class="close-reveal-modal">×</a>
+		</div>
+		<hr>
+		<!-- Accordian -->
+		<h4 id="accordion">Accordion</h4>
+		<dl class="accordion" data-accordion="">
+			<dd>
+			<a href="#panel1">Accordion 1</a>
+			<div id="panel1" class="content active">
+				<dl class="tabs" data-tab="">
+					<dd class="active"><a href="#panel1-1">Tab 1</a></dd>
+					<dd><a href="#panel1-2">Tab 2</a></dd>
+					<dd><a href="#panel1-3">Tab 3</a></dd>
+					<dd><a href="#panel1-4">Tab 4</a></dd>
+				</dl>
+				<div class="tabs-content">
+					<div class="content active" id="panel1-1">
+						<p>
+							First panel content goes here...
+						</p>
+					</div>
+					<div class="content" id="panel1-2">
+						<p>
+							Second panel content goes here...
+						</p>
+					</div>
+					<div class="content" id="panel1-3">
+						<p>
+							Third panel content goes here...
+						</p>
+					</div>
+					<div class="content" id="panel1-4">
+						<p>
+							Fourth panel content goes here...
+						</p>
+					</div>
+				</div>
+			</div>
+			</dd>
+			<dd>
+			<a href="#panel2">Accordion 2</a>
+			<div id="panel2" class="content">
+				 Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+			</div>
+			</dd>
+			<dd>
+			<a href="#panel3">Accordion 3</a>
+			<div id="panel3" class="content">
+				 Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+			</div>
+			</dd>
+		</dl>
+		<hr>
+		<!-- Tabs -->
+		<h4 id="tabs">Tabs</h4>
+		<dl class="tabs" data-tab="">
+			<dd class="active"><a href="#panel2-1">Tab 1</a></dd>
+			<dd><a href="#panel2-2">Tab 2</a></dd>
+			<dd><a href="#panel2-3">Tab 3</a></dd>
+			<dd><a href="#panel2-4">Tab 4</a></dd>
+		</dl>
+		<div class="tabs-content">
+			<div class="content active" id="panel2-1">
+				<p>
+					First panel content goes here...
+				</p>
+			</div>
+			<div class="content" id="panel2-2">
+				<p>
+					Second panel content goes here...
+				</p>
+			</div>
+			<div class="content" id="panel2-3">
+				<p>
+					Third panel content goes here...
+				</p>
+			</div>
+			<div class="content" id="panel2-4">
+				<p>
+					Fourth panel content goes here...
+				</p>
+			</div>
+		</div>
+		<dl class="tabs vertical" data-tab="">
+			<dd class="active"><a href="#panel1a">Tab 1</a></dd>
+			<dd><a href="#panel2a">Tab 2</a></dd>
+			<dd><a href="#panel3a">Tab 3</a></dd>
+			<dd><a href="#panel4a">Tab 4</a></dd>
+		</dl>
+		<div class="tabs-content vertical">
+			<div class="content active" id="panel1a">
+				<p>
+					Panel 1 content goes here.
+				</p>
+			</div>
+			<div class="content" id="panel2a">
+				<p>
+					Panel 2 content goes here.
+				</p>
+			</div>
+			<div class="content" id="panel3a">
+				<p>
+					Panel 3 content goes here.
+				</p>
+			</div>
+			<div class="content" id="panel4a">
+				<p>
+					Panel 4 content goes here.
+				</p>
+			</div>
+		</div>
+		<hr>
+		<!-- Side Nave -->
+		<h4 id="side-nav">Side Nav</h4>
+		<div class="row">
+			<div class="large-4 columns end">
+				<ul class="side-nav">
+					<li class="active"><a href="#">Link 1</a></li>
+					<li><a href="#">Link 2</a></li>
+					<li class="divider"></li>
+					<li><a href="#">Link 3</a></li>
+					<li><a href="#">Link 4</a></li>
+				</ul>
+			</div>
+		</div>
+		<hr>
+		<h4 id="sub-nav">Sub Nav</h4>
+		<dl class="sub-nav">
+			<dt>Filter:</dt>
+			<dd class="active"><a href="#">All</a></dd>
+			<dd><a href="#">Active</a></dd>
+			<dd><a href="#">Pending</a></dd>
+			<dd><a href="#">Suspended</a></dd>
+		</dl>
+		<hr>
+		<!-- Tables -->
+		<h4 id="tables">Tables</h4>
+		<table>
+		<thead>
+		<tr>
+			<th width="200">
+				Table Header
+			</th>
+			<th>
+				Table Header
+			</th>
+			<th width="150">
+				Table Header
+			</th>
+			<th width="150">
+				Table Header
+			</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>
+				Content Goes Here
+			</td>
+			<td>
+				This is longer content Donec id elit non mi porta gravida at eget metus.
+			</td>
+			<td>
+				Content Goes Here
+			</td>
+			<td>
+				Content Goes Here
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Content Goes Here
+			</td>
+			<td>
+				This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.
+			</td>
+			<td>
+				Content Goes Here
+			</td>
+			<td>
+				Content Goes Here
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Content Goes Here
+			</td>
+			<td>
+				This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.
+			</td>
+			<td>
+				Content Goes Here
+			</td>
+			<td>
+				Content Goes Here
+			</td>
+		</tr>
+		</tbody>
+		</table>
+		<hr>
+		<!-- Typography -->
+		<h4 id="type">Type</h4>
+		<p>
+		</p>
+		<h1>h1. This is a very large header.</h1>
+		<p>
+		</p>
+		<p>
+		</p>
+		<h2>h2. This is a large header.</h2>
+		<p>
+		</p>
+		<p>
+		</p>
+		<h3>h3. This is a medium header.</h3>
+		<p>
+		</p>
+		<p>
+		</p>
+		<h4>h4. This is a moderate header.</h4>
+		<p>
+		</p>
+		<p>
+		</p>
+		<h5>h5. This is a small header. h1.</h5>
+		<p>
+		</p>
+		<h6>h6. This is a tiny header. h1.</h6>
+		<p>
+			<br>
+		</p>
+		<p>
+		</p>
+		<h1 class="subheader">h1.subheader</h1>
+		<p>
+		</p>
+		<p>
+		</p>
+		<h2 class="subheader">h2.subheader</h2>
+		<p>
+		</p>
+		<p>
+		</p>
+		<h3 class="subheader">h3.subheader</h3>
+		<p>
+		</p>
+		<p>
+		</p>
+		<h4 class="subheader">h4.subheader</h4>
+		<p>
+		</p>
+		<p>
+		</p>
+		<h5 class="subheader">h5.subheader</h5>
+		<p>
+		</p>
+		<h6 class="subheader">h6.subheader</h6>
+		<p>
+			<br>
+		</p>
+		<ul class="disc">
+			<li>List item with a much longer description or more content.</li>
+			<li>List item</li>
+			<li>List item
+			<ul>
+				<li>Nested List Item</li>
+				<li>Nested List Item</li>
+				<li>Nested List Item</li>
+			</ul>
+			</li>
+			<li>List item</li>
+			<li>List item</li>
+			<li>List item</li>
+		</ul>
+		<p>
+		</p>
+		<h5>Ordered lists are great for lists that need order, duh.</h5>
+		<p>
+		</p>
+		<ol>
+			<li>List Item 1</li>
+			<li>List Item 2</li>
+			<li>List Item 3</li>
+		</ol>
+		<p>
+		</p>
+		<h5>Definition lists are great for small block of copy that describe the header</h5>
+		<p>
+		</p>
+		<dl>
+			<dt>Definition List</dt>
+			<dd>Definition Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nullam id dolor id nibh ultricies vehicula ut id elit.</dd>
+		</dl>
+		<p>
+			<br>
+		</p>
+		<p>
+		</p>
+		<h5>Blockquote</h5>
+		<p>
+		</p>
+		<blockquote>
+			I do not fear computers. I fear the lack of them. Maecenas faucibus mollis interdum. Aenean lacinia bibendum nulla sed consectetur.<cite>Isaac Asimov</cite>
+		</blockquote>
+		<p>
+			<br>
+		</p>
+		<p>
+		</p>
+		<h5>Vcard</h5>
+		<p>
+		</p>
+		<ul class="vcard">
+			<li class="fn">Gaius Baltar</li>
+			<li class="street-address">123 Colonial Ave.</li>
+			<li class="locality">Caprica City</li>
+			<li><span class="state">Caprica</span>, <span class="zip">12345</span></li>
+			<li class="email"><a href="#">g.baltar@cmail.com</a></li>
+		</ul>
+	</div>
+</div>
+</div>
+</body>
+</html>
