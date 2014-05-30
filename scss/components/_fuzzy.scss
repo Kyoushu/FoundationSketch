@@ -12,7 +12,11 @@ $fuzzy-inset: rem-calc(20);
         background-position: ($column-gutter / 2) 0;
     }
     
-    > p{
+    > h2, > h3, > h4, > h5, > h6{
+        line-height: 1em;
+    }
+    
+    > p, > h2, > h3, > h4, > h5, > h6{
         
         &:nth-child(1){
             margin-top: $fuzzy-inset;

@@ -3,13 +3,12 @@
 @font-face {
   font-family: "marker";
   src:url("#{$fonts-path}/marker/fonts/marker.eot");
-  src: url("#{$fonts-path}/marker/fonts/marker.svg#marker") format("svg"),
+  src:url("#{$fonts-path}/marker/fonts/marker.svg#marker") format("svg"),
     url("#{$fonts-path}/marker/fonts/marker.eot?#iefix") format("embedded-opentype"),
     url("#{$fonts-path}/marker/fonts/marker.woff") format("woff"),
     url("#{$fonts-path}/marker/fonts/marker.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
-
 }
 
 [data-icon]:before {
