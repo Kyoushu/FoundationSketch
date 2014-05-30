@@ -5,10 +5,32 @@
     
     var fuzzy = (function(){
         
-        var defaultFuzzStrength = 5;
+        var fuzzStrength = 5;
         var defaultColour = '#222222';
-        
+        var rgbRegex = /rgba?\(([0-9]+)[^0-9\)]+([0-9]+)[^0-9\)]+([0-9]+)([^\)]+)?\)/;
+        var generateFuzzyBoxesDelay = 50;
         var inset = 3;
+        
+        var generateFuzzyBoxesTimeout;
+    
+        function rgbToHex(rgb){
+
+            function componentToHex(component) {
+                var hex = component.toString(16);
+                return hex.length === 1 ? "0" + hex : hex;
+            }
+
+            var rgbMatch = rgb.match(rgbRegex);
+            if(!rgbMatch) return null;
+
+            var red = parseInt(rgbMatch[1]);
+            var green = parseInt(rgbMatch[2]);
+            var blue = parseInt(rgbMatch[3]);
+
+            var colour = '#' + componentToHex(red) + componentToHex(green) + componentToHex(blue);
+            return colour;
+
+        }
         
         function fuzz(x, strength){
             return x + Math.random() * strength - strength / 2;
@@ -28,9 +50,8 @@
 
         // inspired by this paper
         // http://iwi.eldoc.ub.rug.nl/FILES/root/2008/ProcCAGVIMeraj/2008ProcCAGVIMeraj.pdf
-        function handDrawLine(ctx, x0, y0, x1, y1, fuzzStrength, colour){
+        function handDrawLine(ctx, x0, y0, x1, y1, colour){
             
-            if(typeof fuzzStrength === 'undefined') fuzzStrength = defaultFuzzStrength;
             if(typeof colour === 'undefined') colour = defaultColour;
             
             ctx.strokeStyle = colour;
@@ -61,12 +82,11 @@
             
         }
         
-        function createFillBoxCanvas(width, height, fuzzStrength, colour){
+        function createFillBoxCanvas(width, height, colour){
             
-            if(typeof fuzzStrength === 'undefined') fuzzStrength = defaultFuzzStrength;
             if(typeof colour === 'undefined') colour = defaultColour;
             
-            var canvas = createBorderBoxCanvas(width, height, fuzzStrength, colour);
+            var canvas = createBorderBoxCanvas(width, height, colour);
             
             var ctx = canvas.getContext('2d');
             
@@ -77,9 +97,8 @@
             return canvas;
         }
         
-        function createBorderBoxCanvas(width, height, fuzzStrength, colour){
+        function createBorderBoxCanvas(width, height, colour){
             
-            if(typeof fuzzStrength === 'undefined') fuzzStrength = defaultFuzzStrength;
             if(typeof colour === 'undefined') colour = defaultColour;
             
             var canvas = document.createElement('canvas');
@@ -88,10 +107,10 @@
             
             var ctx = canvas.getContext('2d');
             
-            handDrawLine(ctx, inset, inset, width - inset, inset, fuzzStrength, colour);  // TL > TR
-            handDrawLine(ctx, width - inset, inset, width - inset, height - inset, fuzzStrength, colour); // TR > BR
-            handDrawLine(ctx, width, height -inset, inset, height - inset, fuzzStrength, colour); // BR > BL
-            handDrawLine(ctx, inset, height - inset, inset, inset, fuzzStrength, colour); // BL > TL
+            handDrawLine(ctx, inset, inset, width - inset, inset, colour);  // TL > TR
+            handDrawLine(ctx, width - inset, inset, width - inset, height - inset, colour); // TR > BR
+            handDrawLine(ctx, width, height -inset, inset, height - inset, colour); // BR > BL
+            handDrawLine(ctx, inset, height - inset, inset, inset, colour); // BL > TL
             
             ctx.stroke();
             
@@ -99,14 +118,104 @@
             
         }
         
+        function initElement(element){
+            
+            element.attr('data-fuzzy-init', 1);
+            
+            
+        }
+        
+        function init(options, context){
+            options.selectors.forEach(function(index, selector){
+                $(selector).each(function(){
+                    var element = $(this);
+                    initElement(element);
+                });
+            });
+            reflow();
+        }
+        
+        function reflow(){
+            
+            $('[data-fuzzy-init=1]').each(function(){
+                
+                var element = $(this);
+                var mode = element.attr('data-fuzzy');
+                
+                var width = element.width();
+                var height = element.height();
+                
+                if(mode === 'fill'){
+                    var canvas = fuzzy.createFillBoxCanvas(width, height, '#000000');
+                }
+                else{
+                    var canvas = fuzzy.createBorderBoxCanvas(width, height);
+                }
+                
+                element.css({
+                    'background-image': 'url(' + canvas.toDataURL('image/png') + ')'
+                });
+                
+            });
+            
+            /*
+
+            $('[data-fuzzy=fill]').each(function(){
+
+                
+
+                if(element.attr('data-fuzzy-colour')){
+                    var colour = element.attr('data-fuzzy-colour');
+                }
+                else{
+                    var rgbMatch = element.css('background').match(rgbRegex);
+                    var colour = (rgbMatch ? rgbToHex(rgbMatch[0]) : null);
+                    if(colour){
+                        element.attr('data-fuzzy-colour', colour);
+                        element.css('background-color', 'rgba(0,0,0,0)');
+                    }
+                }
+
+                var width = element.outerWidth();
+                var height = element.outerHeight();
+
+                
+
+                element.css({
+                    'background-image': 'url(' + canvas.toDataURL('image/png') + ')'
+                });
+
+            });
+            */
+
+        }
+        
         return {
-            'defaultColour': defaultColour,
-            'createBorderBoxCanvas': createBorderBoxCanvas,
-            'createFillBoxCanvas': createFillBoxCanvas
+            'init': init,
+            'reflow': reflow
+            //'defaultColour': defaultColour,
+            //'createBorderBoxCanvas': createBorderBoxCanvas,
+            //'createFillBoxCanvas': createFillBoxCanvas
         };
         
     })();
     
-    window.fuzzy = fuzzy;
+    
+    
+    $.fuzzy = fuzzy;
+    
+    $.fn.fuzzy = function(options){
+        
+        var defaults = {
+            'selectors': []
+        };
+        
+        options = $.extend({}, defaults, options);
+        
+        $.fuzzy.init(options, this);
+        $(window).on('resize', function(){
+            $.fuzzy.reflow(); 
+        });
+    };
     
 })(jQuery, window, window.document);
