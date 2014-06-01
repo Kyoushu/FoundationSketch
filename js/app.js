@@ -1,5 +1,10 @@
 $(document).foundation();
 
 $(document).fuzzy({
-    "selectors": [".columns", "nav, nav a, nav li"]
+    "selectors": [
+        ".columns",
+        ".column",
+        "nav li a",
+        //"nav, nav a, nav li"
+    ]
 });

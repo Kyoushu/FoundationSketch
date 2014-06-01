@@ -5,31 +5,50 @@
     
     var fuzzy = (function(){
         
-        var fuzzStrength = 5;
-        var defaultColour = '#222222';
-        var rgbRegex = /rgba?\(([0-9]+)[^0-9\)]+([0-9]+)[^0-9\)]+([0-9]+)([^\)]+)?\)/;
-        var generateFuzzyBoxesDelay = 50;
-        var inset = 3;
+        var defaults = {
+            'selectors': [],
+            'fuzzStrength': 5,
+            'backgroundColor': null,
+            'borderColor': '#000000',
+            'inheritStyles': true,
+            'inset': 2
+        };
         
-        var generateFuzzyBoxesTimeout;
+        var regexRgb = /rgba?\(([0-9]+)[^0-9\)]+([0-9]+)[^0-9\)]+([0-9]+)([^\)]+)?\)/;
     
-        function rgbToHex(rgb){
+        function rgbToHex(red, green, blue){
 
             function componentToHex(component) {
-                var hex = component.toString(16);
+                var hex = parseInt(component).toString(16);
                 return hex.length === 1 ? "0" + hex : hex;
             }
+            return '#' + componentToHex(red) + componentToHex(green) + componentToHex(blue);
 
-            var rgbMatch = rgb.match(rgbRegex);
+        }
+        
+        function getStyleColor(style){
+            var rgbMatch = style.match(regexRgb);
+            
             if(!rgbMatch) return null;
-
-            var red = parseInt(rgbMatch[1]);
-            var green = parseInt(rgbMatch[2]);
-            var blue = parseInt(rgbMatch[3]);
-
-            var colour = '#' + componentToHex(red) + componentToHex(green) + componentToHex(blue);
-            return colour;
-
+            
+            if(typeof rgbMatch[4] !== 'undefined'){
+                var alpha = parseInt(rgbMatch[4].match(/[0-9]+$/)[0]);
+                if(alpha === 0) return null;
+            }
+            
+            return rgbToHex(rgbMatch[1], rgbMatch[2], rgbMatch[3]);
+        }
+        
+        function getElementBackgroundColor(element){
+            var style = element.css('background');
+            return getStyleColor(style);
+        }
+        
+        function getElementBorderColor(element){
+            var borderWidth = parseInt(element.css('border-width'));
+            if(borderWidth === 0) return null;
+            var style = element.css('border');
+            return getStyleColor(style);
         }
         
         function fuzz(x, strength){
@@ -50,11 +69,16 @@
 
         // inspired by this paper
         // http://iwi.eldoc.ub.rug.nl/FILES/root/2008/ProcCAGVIMeraj/2008ProcCAGVIMeraj.pdf
-        function handDrawLine(ctx, x0, y0, x1, y1, colour){
+        function handDrawLine(ctx, x0, y0, x1, y1, options){
             
-            if(typeof colour === 'undefined') colour = defaultColour;
+            var color = options.borderColor;
+            if(color === null && options.backgroundColor !== null){
+                color = options.backgroundColor;
+            }
             
-            ctx.strokeStyle = colour;
+            if(color === null) return;
+            
+            ctx.strokeStyle = color;
             ctx.lineWidth = 2;
             ctx.moveTo(x0, y0);
 
@@ -74,32 +98,18 @@
                 var xt1 = handDrawMovement(x0, x1, t1);
                 var yt1 = handDrawMovement(y0, y1, t1);
                 
-                ctx.quadraticCurveTo(fuzz(xt0, fuzzStrength), fuzz(yt0, fuzzStrength), xt1, yt1);
+                ctx.quadraticCurveTo(fuzz(xt0, options.fuzzStrength), fuzz(yt0, options.fuzzStrength), xt1, yt1);
                 ctx.moveTo(xt1, yt1);
                 
             }
             
-            
         }
         
-        function createFillBoxCanvas(width, height, colour){
+        function createBoxCanvas(width, height, options){
             
-            if(typeof colour === 'undefined') colour = defaultColour;
+            var backgroundColor = options.backgroundColor;
             
-            var canvas = createBorderBoxCanvas(width, height, colour);
-            
-            var ctx = canvas.getContext('2d');
-            
-            ctx.rect(inset, inset, width - (inset * 2), height - (inset * 2));
-            ctx.fillStyle = colour;
-            ctx.fill();
-            
-            return canvas;
-        }
-        
-        function createBorderBoxCanvas(width, height, colour){
-            
-            if(typeof colour === 'undefined') colour = defaultColour;
+            var inset = options.inset;
             
             var canvas = document.createElement('canvas');
             canvas.width = width;
@@ -107,10 +117,16 @@
             
             var ctx = canvas.getContext('2d');
             
-            handDrawLine(ctx, inset, inset, width - inset, inset, colour);  // TL > TR
-            handDrawLine(ctx, width - inset, inset, width - inset, height - inset, colour); // TR > BR
-            handDrawLine(ctx, width, height -inset, inset, height - inset, colour); // BR > BL
-            handDrawLine(ctx, inset, height - inset, inset, inset, colour); // BL > TL
+            if(backgroundColor !== null){
+                ctx.rect(inset, inset, width - (inset * 2), height - (inset * 2));
+                ctx.fillStyle = backgroundColor;
+                ctx.fill();
+            }
+            
+            handDrawLine(ctx, inset, inset, width - inset, inset, options);  // TL > TR
+            handDrawLine(ctx, width - inset, inset, width - inset, height - inset, options); // TR > BR
+            handDrawLine(ctx, width, height -inset, inset, height - inset, options); // BR > BL
+            handDrawLine(ctx, inset, height - inset, inset, inset, options); // BL > TL
             
             ctx.stroke();
             
@@ -118,104 +134,78 @@
             
         }
         
-        function initElement(element){
+        function initElement(options, element){
             
-            element.attr('data-fuzzy-init', 1);
+            if(options.inheritStyles){
+                options.backgroundColor = getElementBackgroundColor(element);
+                options.borderColor = getElementBorderColor(element);
+            }
             
+            element.attr('data-fuzzy', '');
+            element.data('fuzzy-options', options);
+            
+            element.css({
+                'border': 'none',
+                'background': 'none'
+            });
             
         }
         
         function init(options, context){
-            options.selectors.forEach(function(index, selector){
-                $(selector).each(function(){
+            
+            options.selectors.forEach(function(selector){
+                $(context).find(selector).each(function(){
+                    
                     var element = $(this);
-                    initElement(element);
+                    var elementOptions = $.extend({}, options);
+                    
+                    initElement(elementOptions, element);
+                    
                 });
             });
-            reflow();
+            
         }
         
         function reflow(){
             
-            $('[data-fuzzy-init=1]').each(function(){
+            $('[data-fuzzy]').each(function(){
                 
                 var element = $(this);
-                var mode = element.attr('data-fuzzy');
+                var options = element.data('fuzzy-options');
                 
                 var width = element.width();
                 var height = element.height();
                 
-                if(mode === 'fill'){
-                    var canvas = fuzzy.createFillBoxCanvas(width, height, '#000000');
-                }
-                else{
-                    var canvas = fuzzy.createBorderBoxCanvas(width, height);
-                }
+                var canvas = createBoxCanvas(width, height, options);
                 
                 element.css({
                     'background-image': 'url(' + canvas.toDataURL('image/png') + ')'
                 });
                 
             });
-            
-            /*
-
-            $('[data-fuzzy=fill]').each(function(){
-
-                
-
-                if(element.attr('data-fuzzy-colour')){
-                    var colour = element.attr('data-fuzzy-colour');
-                }
-                else{
-                    var rgbMatch = element.css('background').match(rgbRegex);
-                    var colour = (rgbMatch ? rgbToHex(rgbMatch[0]) : null);
-                    if(colour){
-                        element.attr('data-fuzzy-colour', colour);
-                        element.css('background-color', 'rgba(0,0,0,0)');
-                    }
-                }
-
-                var width = element.outerWidth();
-                var height = element.outerHeight();
-
-                
-
-                element.css({
-                    'background-image': 'url(' + canvas.toDataURL('image/png') + ')'
-                });
-
-            });
-            */
 
         }
         
         return {
             'init': init,
-            'reflow': reflow
-            //'defaultColour': defaultColour,
-            //'createBorderBoxCanvas': createBorderBoxCanvas,
-            //'createFillBoxCanvas': createFillBoxCanvas
+            'reflow': reflow,
+            'defaults': defaults
         };
         
     })();
-    
-    
     
     $.fuzzy = fuzzy;
     
     $.fn.fuzzy = function(options){
         
-        var defaults = {
-            'selectors': []
-        };
-        
-        options = $.extend({}, defaults, options);
+        options = $.extend({}, $.fuzzy.defaults, options);
         
         $.fuzzy.init(options, this);
-        $(window).on('resize', function(){
-            $.fuzzy.reflow(); 
-        });
+        
+        $(window).on('resize', $.fuzzy.reflow);
+        
+        setTimeout( $.fuzzy.reflow, 100);
+        
     };
     
 })(jQuery, window, window.document);

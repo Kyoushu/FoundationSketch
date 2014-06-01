@@ -4,10 +4,6 @@ $fuzzy-inset: rem-calc(20);
     
     background-repeat: no-repeat !important;
     
-    &[data-fuzzy="fill"]{
-        color: #fff;
-    }
-    
     &.columns, &.column{
         background-position: ($column-gutter / 2) 0;
     }
@@ -28,14 +24,6 @@ $fuzzy-inset: rem-calc(20);
         
         margin-left: $fuzzy-inset;
         margin-right: $fuzzy-inset;
-    }
-    
-}
-
-[data-fuzzy="fill"]{
-    
-    nav{
-        background: none;
     }
     
 }
