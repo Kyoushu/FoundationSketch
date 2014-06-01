@@ -4,10 +4,6 @@ $fuzzy-inset: rem-calc(20);
     
     background-repeat: no-repeat !important;
     
-    &.columns, &.column{
-        background-position: ($column-gutter / 2) 0;
-    }
-    
     > h2, > h3, > h4, > h5, > h6{
         line-height: 1em;
     }
@@ -24,6 +20,25 @@ $fuzzy-inset: rem-calc(20);
         
         margin-left: $fuzzy-inset;
         margin-right: $fuzzy-inset;
+    }
+    
+}
+
+body > .row{
+    > .columns, > .column{    
+        border: solid 1px #222222;
+    }
+}
+
+nav{
+    
+    ul{
+        background: none !important;
+        
+        li{
+            background: none !important;
+        }
+        
     }
     
 }

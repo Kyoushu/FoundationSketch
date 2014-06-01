@@ -11,7 +11,8 @@
             'backgroundColor': null,
             'borderColor': '#000000',
             'inheritStyles': true,
-            'inset': 2
+            'inset': 3,
+            'debug': true
         };
         
         var regexRgb = /rgba?\(([0-9]+)[^0-9\)]+([0-9]+)[^0-9\)]+([0-9]+)([^\)]+)?\)/;
@@ -136,6 +137,8 @@
         
         function initElement(options, element){
             
+            if(typeof element.attr('data-fuzzy') !== 'undefined') return;
+            
             if(options.inheritStyles){
                 options.backgroundColor = getElementBackgroundColor(element);
                 options.borderColor = getElementBorderColor(element);
@@ -145,9 +148,18 @@
             element.data('fuzzy-options', options);
             
             element.css({
-                'border': 'none',
-                'background': 'none'
+                'border': '0',
+                'background-color': 'transparent'
             });
+            
+            if(options.debug){
+                element.attr('data-fuzzy-debug',
+                    'background: ' +
+                    options.backgroundColor +
+                    ', border: ' +
+                    options.borderColor
+                );
+            }
             
         }
         
@@ -173,8 +185,8 @@
                 var element = $(this);
                 var options = element.data('fuzzy-options');
                 
-                var width = element.width();
-                var height = element.height();
+                var width = element.outerWidth();
+                var height = element.outerHeight();
                 
                 var canvas = createBoxCanvas(width, height, options);
                 

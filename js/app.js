@@ -5,6 +5,20 @@ $(document).fuzzy({
         ".columns",
         ".column",
         "nav li a",
-        //"nav, nav a, nav li"
+        "nav, nav a"
     ]
+});
+
+// Reflow fuzzy elements when clicking on top nav links
+$(function(){
+    
+    var timeout;
+   
+    $('nav a').on('click', function(){
+        clearTimeout(timeout);
+        timeout = setTimeout(function(){
+            $.fuzzy.reflow();
+        }, 20);
+    });
+    
 });
