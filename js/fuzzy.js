@@ -2,8 +2,8 @@
 // http://29a.ch/2010/2/10/hand-drawn-lines-algorithm-javascript-canvas-html5
 
 (function($, window, document, undefined){
-    
-    var fuzzy = (function(){
+
+    $.fuzzy = (function(){
         
         var defaults = {
             'selectors': [],
@@ -12,7 +12,7 @@
             'borderColor': '#000000',
             'inheritStyles': true,
             'inset': 3,
-            'debug': true
+            'debug': false
         };
         
         var regexRgb = /rgba?\(([0-9]+)[^0-9\)]+([0-9]+)[^0-9\)]+([0-9]+)([^\)]+)?\)/;
@@ -46,8 +46,9 @@
         }
         
         function getElementBorderColor(element){
+            var tagName = getTagName(element);
             var borderWidth = parseInt(element.css('border-width'));
-            if(borderWidth === 0) return null;
+            if(borderWidth === 0 && tagName !== 'hr') return null;
             var style = element.css('border');
             return getStyleColor(style);
         }
@@ -105,6 +106,24 @@
             }
             
         }
+
+        function createHorizontalLineCanvas(width, options){
+
+            var inset = options.inset;
+
+            var canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = inset * 2;
+
+            var ctx = canvas.getContext('2d');
+
+            handDrawLine(ctx, inset, inset, width - inset, inset, options);
+
+            ctx.stroke();
+
+            return canvas;
+
+        }
         
         function createBoxCanvas(width, height, options){
             
@@ -126,7 +145,7 @@
             
             handDrawLine(ctx, inset, inset, width - inset, inset, options);  // TL > TR
             handDrawLine(ctx, width - inset, inset, width - inset, height - inset, options); // TR > BR
-            handDrawLine(ctx, width, height -inset, inset, height - inset, options); // BR > BL
+            handDrawLine(ctx, width - inset, height -inset, inset, height - inset, options); // BR > BL
             handDrawLine(ctx, inset, height - inset, inset, inset, options); // BL > TL
             
             ctx.stroke();
@@ -138,11 +157,21 @@
         function initElement(options, element){
             
             if(typeof element.attr('data-fuzzy') !== 'undefined') return;
+
+            var tagName = getTagName(element);
             
             if(options.inheritStyles){
                 options.backgroundColor = getElementBackgroundColor(element);
+
                 options.borderColor = getElementBorderColor(element);
+                if(!options.borderColor && tagName === 'hr'){
+                    options.borderColor = defaults.borderColor;
+                }
             }
+
+            console.log(tagName);
+            console.log(defaults);
+            console.log(options);
             
             element.attr('data-fuzzy', '');
             element.data('fuzzy-options', options);
@@ -177,6 +206,10 @@
             });
             
         }
+
+        function getTagName(element){
+            return element[0].tagName.toLowerCase();
+        }
         
         function reflow(){
             
@@ -184,15 +217,30 @@
                 
                 var element = $(this);
                 var options = element.data('fuzzy-options');
+                var tagName = getTagName(element);
                 
                 var width = element.outerWidth();
                 var height = element.outerHeight();
-                
-                var canvas = createBoxCanvas(width, height, options);
-                
+
+                var canvas;
+
+                if(tagName === 'hr'){
+                    canvas = createHorizontalLineCanvas(width, options);
+                }
+                else{
+                    canvas = createBoxCanvas(width, height, options);
+                }
+
                 element.css({
                     'background-image': 'url(' + canvas.toDataURL('image/png') + ')'
                 });
+
+                if(tagName === 'hr'){
+                    element.css({
+                        'display': 'block',
+                        'height': (options.inset * 2) + 'px'
+                    });
+                }
                 
             });
 
@@ -206,8 +254,6 @@
         
     })();
     
-    $.fuzzy = fuzzy;
-    
     $.fn.fuzzy = function(options){
         
         options = $.extend({}, $.fuzzy.defaults, options);
@@ -215,7 +261,8 @@
         $.fuzzy.init(options, this);
         
         $(window).on('resize', $.fuzzy.reflow);
-        
+
+        $.fuzzy.reflow();
         setTimeout( $.fuzzy.reflow, 100);
         
     };

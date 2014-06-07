@@ -1,25 +1,25 @@
-$fuzzy-inset: rem-calc(20);
+$fuzzy-gutter: rem-calc(20);
 
 [data-fuzzy]{
-    
+
     background-repeat: no-repeat !important;
     
     > h2, > h3, > h4, > h5, > h6{
         line-height: 1em;
     }
     
-    > p, > h2, > h3, > h4, > h5, > h6{
+    > p, > h2, > h3, > h4, > h5, > h6, > hr{
         
         &:nth-child(1){
-            margin-top: $fuzzy-inset;
+            margin-top: $fuzzy-gutter;
         }
         
         &:last-child{
-            margin-bottom: $fuzzy-inset;
+            margin-bottom: $fuzzy-gutter;
         }
         
-        margin-left: $fuzzy-inset;
-        margin-right: $fuzzy-inset;
+        margin-left: $fuzzy-gutter;
+        margin-right: $fuzzy-gutter;
     }
     
 }

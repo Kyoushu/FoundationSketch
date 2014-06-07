@@ -2,10 +2,10 @@ $(document).foundation();
 
 $(document).fuzzy({
     "selectors": [
-        ".columns",
-        ".column",
+        ".columns, .column",
         "nav li a",
-        "nav, nav a"
+        "nav, nav a",
+        "hr"
     ]
 });
 
@@ -16,9 +16,11 @@ $(function(){
    
     $('nav a').on('click', function(){
         clearTimeout(timeout);
+
         timeout = setTimeout(function(){
             $.fuzzy.reflow();
         }, 20);
+
     });
     
 });
