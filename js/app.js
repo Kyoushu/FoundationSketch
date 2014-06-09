@@ -5,6 +5,12 @@ $(document).fuzzy({
         ".columns, .column",
         "nav li a",
         "nav, nav a",
+        ".button",
+        ".alert-box",
+        ".orbit-caption",
+        "input",
+        "textarea",
+        ".pagination .current",
         "hr"
     ]
 });
